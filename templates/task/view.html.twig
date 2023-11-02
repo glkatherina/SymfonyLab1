@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task Information{% endblock %}
+
+{% block body %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Sono:wght@600&display=swap');
+        body{
+            font-family: 'Sono', sans-serif;
+            background: linear-gradient(to bottom, #030173, #7629cf, #e2a7f2);
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .task-details {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-details h1 {
+            color: #333;
+        }
+
+        .task-details p {
+            margin-bottom: 10px;
+        }
+
+        .task-details strong {
+            font-weight: bold;
+        }
+
+.btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 10px;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: MidnightBlue;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+        background-color: MediumBlue;
+        border-color: #ccc;
+    }
+    .delete-button {
+        display: inline-block;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #7629cf;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-right: 10px; 
+    }
+
+    .delete-button:hover {
+        background-color: #4B0082;
+        border-color: #ccc;
+    }
+    
+</style>
+
+<div class="task-details">
+    <h1>{{ task.title }}</h1>
+    <p><strong>Description:</strong> {{ task.description }}</p>
+    <p><strong>Completion date:</strong> {{ task.date ? task.date|date('Y-m-d') }}</p>
+    <p><strong>Category:</strong> {{ task.category.name }}</p>
+
+    <div style="margin-top: 20px;">
+        <a href="{{ path('task_update', {'id': task.id}) }}" class="btn btn-warning">Update</a>
+         <a href="{{ path('task_delete', {'id': task.id}) }}" class="delete-button" data-task-id="{{ task.id }}">Delete</a>
+    </div>
+</div>
+
+<script>
+    const deleteButtons = document.querySelectorAll(".delete-button");
+    deleteButtons.forEach((button) => 
+    {
+        button.addEventListener("click", () => 
+        {
+            const taskId = button.getAttribute("data-task-id");
+            fetch(`/task/delete/${taskId}`, 
+            {
+                method: "DELETE",
+            })
+            .then(response => response.json())
+            .then(data => 
+            {
+                window.location.href = "/task/list";
+            })
+
+        });
+    });
+</script>
+
+{% endblock %}

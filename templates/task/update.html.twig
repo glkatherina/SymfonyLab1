@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New task{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="form-container">
+            <div class="header">
+                <h1>New task</h1>
+            </div>
+                {{ form_start(task_form) }}
+                {{ form_widget(task_form) }}
+                {{ form_end(task_form) }}
+        </div>
+    </div>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sono:wght@600&display=swap');
+            body{
+                font-family: 'Sono', sans-serif;
+                background: linear-gradient(to bottom, #030173, #7629cf, #e2a7f2);
+            }
+            .container {
+                max-width: 500px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .header h1 {
+                color: #333;
+                text-align:center;
+            }
+
+            .form-container {
+                margin-top: 20px;
+                padding: 20px;
+                border: 2px solid #ccc;
+                border-radius: 20px;
+                background-color: #f9f9f9;
+            }
+
+            .form-container input[type="text"],
+            .form-container select,
+            .form-container button[type="submit"] {
+                width: calc(100% - 22px);
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 20px;
+                font-size: 16px;
+            }
+
+            .form-container button[type="submit"] {
+                background-color: MidnightBlue;
+                color: white;
+                cursor: pointer;
+                font-size: 18px;
+            }
+
+            .form-container button[type="submit"]:hover {
+                background-color: MediumBlue;
+            }
+            
+    </style>
+{% endblock %}
