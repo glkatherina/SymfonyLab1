@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in{% endblock %}
+
+{% block body %}
+<div class="container">
+    <form method="post" class="form-signin">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-weight-normal">Authentication form</h1>
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        </div>
+
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+
+        <button class="btn btn-lg btn-primary" type="submit">
+            Login
+        </button><br><br><br>
+
+         {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+            
+        {% endif %}
+    </form>
+</div>
+ <style>
+            @import url('https://fonts.googleapis.com/css2?family=Sono:wght@600&display=swap');
+
+    
+    body {
+        font-family: 'Sono', sans-serif;
+        background: linear-gradient(to bottom, #030173, #7629cf, #e2a7f2);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        max-width: 500px;
+        width: 100%;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 2px solid #ccc;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    .container input[type="text"],
+    .container input[type="password"],
+    .container input[type="email"],
+    .container input[type="checkbox"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        font-size: 16px;
+    }
+
+    .container button[type="submit"] {
+        width: 100%;
+        background-color: MidnightBlue;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        border: none;
+        padding: 15px;
+        border-radius: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    .container button[type="submit"]:hover {
+        background-color: MediumBlue;
+    }
+
+    .form-errors {
+        color: red;
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}

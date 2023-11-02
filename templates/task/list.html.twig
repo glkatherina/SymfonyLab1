@@ -19,10 +19,7 @@
             <a href="{{ path('app_task_view', {'id': task.id}) }}" class="btn btn-primary" style="margin-top: 10px;">View Task</a>
             <a href="{{ path('task_delete', {'id': task.id}) }}" class="delete-button" data-task-id="{{ task.id }}">Delete</a>
         </div>
-        
     {% endfor %}
-{{ knp_pagination_render(tasks) }}
-
 </div>
 
 <style>
@@ -96,12 +93,6 @@
         background-color: #4B0082;
         border-color: #ccc;
     }
-    .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 30px;
-    }
-
 </style>
 
 <script>

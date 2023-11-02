@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Registration form</h1>
+
+        <div class="form-errors">
+            {{ form_errors(registrationForm) }}
+        </div>
+
+        <div class="registration-form">
+            {{ form_start(registrationForm) }}
+                <div class="form-group">
+                    {{ form_row(registrationForm.email) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(registrationForm.plainPassword, {'label': 'Password'}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(registrationForm.agreeTerms) }}
+                </div>
+
+                <button type="submit" class="btn btn-primary">Register</button>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+
+    <style>
+            @import url('https://fonts.googleapis.com/css2?family=Sono:wght@600&display=swap');
+
+    
+    body {
+        font-family: 'Sono', sans-serif;
+        background: linear-gradient(to bottom, #030173, #7629cf, #e2a7f2);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        max-width: 500px;
+        width: 100%;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 2px solid #ccc;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    .container input[type="text"],
+    .container input[type="password"],
+    .container input[type="email"],
+    .container input[type="checkbox"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        font-size: 16px;
+    }
+
+    .container button[type="submit"] {
+        width: 100%;
+        background-color: MidnightBlue;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        border: none;
+        padding: 15px;
+        border-radius: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    .container button[type="submit"]:hover {
+        background-color: MediumBlue;
+    }
+
+    .form-errors {
+        color: red;
+        margin-bottom: 10px;
+    }
+</style>
+
+{% endblock %}
